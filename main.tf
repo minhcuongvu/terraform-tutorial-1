@@ -18,6 +18,13 @@ provider "docker" {
   # https://github.com/kreuzwerker/terraform-provider-docker/blob/54685a5fb9b375961620d2c555c7f3925327112c/internal/provider/provider.go#L50
   host = "npipe:////.//pipe//docker_engine"
   # host = "unix:///var/run/docker.sock"
+
+  # for private docker registry
+  # registry_auth {
+  #   address  = "https://index.docker.io/v1/"
+  #   username = var.docker_hub_username
+  #   password = var.docker_hub_password
+  # }
 }
 
 resource "docker_image" "nginx" {
