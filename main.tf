@@ -7,6 +7,7 @@ terraform {
   }
   required_providers {
     docker = {
+      # https://github.com/kreuzwerker/terraform-provider-docker
       source  = "kreuzwerker/docker"
       version = "~> 3.0.1"
     }
@@ -14,13 +15,14 @@ terraform {
 }
 
 provider "docker" {
+  # https://github.com/kreuzwerker/terraform-provider-docker/blob/54685a5fb9b375961620d2c555c7f3925327112c/internal/provider/provider.go#L50
   host = "npipe:////.//pipe//docker_engine"
   # host = "unix:///var/run/docker.sock"
 }
 
 resource "docker_image" "nginx" {
   name         = "nginx"
-  keep_locally = false
+  keep_locally = true
 }
 
 resource "docker_container" "nginx" {
